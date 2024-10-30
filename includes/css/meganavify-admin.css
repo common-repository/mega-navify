@@ -1,0 +1,927 @@
+#custom-dropdown-checklist li {display: flex;justify-content: space-between;margin: 10px 0px;align-items: center;}
+#custom-dropdown-checklist li .form-group{display: flex; gap: 1px;}
+/* important css */
+#meganavify-menu-settings {display: block;}  
+/* important css */
+
+
+.meganavify-loader-wraper{
+    display: flex;
+    align-items: center;
+}
+.meganavify-loader {
+    border: 3px solid #dcdcde;
+    border-radius: 50%;
+    border-top: 3px solid #2471b1;
+    width: 12px;
+    height: 12px;
+    -webkit-animation: spin 2s linear infinite; /* Safari */
+    animation: spin 2s linear infinite;
+    margin-left: 12px;
+  }
+  
+  ul.categorychecklist li label{
+    font-size: 12px;
+    line-height: 16px;
+  }
+  
+  /* Safari */
+  @-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+.meganavify-accordion {
+	max-width: 400px;
+	/* margin: 20px auto; */
+}
+.meganavify-accordion-item {
+	border: 1px solid #ccc;
+	margin-bottom: 10px;
+  
+}
+.meganavify-accordion-item-header {
+	background-color: #f6f7f7;
+	padding: 10px;
+	cursor: pointer;
+  /* border-bottom: 1px solid #ccc; */
+}
+.meganavify-accordion-item-body {
+	height: 0;
+	overflow: hidden;
+	transition: height 0.3s ease;
+	padding: 0;
+	p{
+		margin: 0;
+		padding: 8px 16px;
+	}
+}
+.meganavify-accordion-item-body.meganavify-collapsed {
+	height: 0;
+  border-top:transparent ;
+  padding-bottom: 0px;
+}
+.meganavify-accordion-item-body {
+    border-top: 1px solid #ccc;
+    padding: 0px 10px 10px 10px;
+}
+span.meganavify-manage-menu {
+  background-color: #2271b1;
+  color: #fff;
+  padding: 3px 5px;
+  border-radius: 2px;
+  font-size: 11px;
+  line-height: 14px;
+  font-weight: normal;
+  cursor: pointer;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  margin-left: 10px;
+  opacity: 0;
+  transition: 0.2s ease-in-out;
+}
+.menu-item-bar .menu-item-handle:hover span.meganavify-manage-menu{
+  opacity: 1;
+}
+.menu-item-handle .item-title{margin-right: 0;}
+span.meganavify-manage-menu::after{
+  content: "\f111";
+  right: 0;
+  top: 0;
+  font-family: dashicons;
+  font-size: 10px;
+  margin-left: 4px;
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-font-smoothing: antialiased;
+}
+
+.meganavify-manage-menu {
+    background: #2271b1;
+    color: #fff;
+    padding: 5px;
+    border-radius: 3px;
+    font-size: 10px;
+    font-weight: bold;
+    clear: both;
+    cursor: pointer;
+}
+
+/* The Modal (background) */
+.navify-menu-modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 99; /* Sit on top */
+  /* padding: 180px 0 0 80px;  */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.6); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.navify-menu-modal .navify-menu-modal-content {
+  position: relative;
+  background-color: #fefefe;
+  /* margin: auto; */
+  padding: 0;
+  border: 1px solid #888;
+  width: 70%;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  /* -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s; */
+  min-height: 450px;
+  display: block;
+  left: calc(50% + 80px);
+  top: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 1;
+}
+
+.navify-model-tab-container {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.tab-container {
+  display: block;
+  width: 15%;
+  /* border-right: 1px solid #e9e5e5; */
+  box-shadow: inset -10px 0px 7px -12px rgba(0, 0, 0, 0.2);
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+  from {top:-300px; opacity:0} 
+  to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
+
+/* The Close Button */
+.navify-menu-close {
+  color: #606060;
+  /* float: right; */
+  font-size: 24px;
+  font-weight: 600;
+  transition: 0.3s ease-in-out;
+}
+
+.navify-menu-close:hover,
+.navify-menu-close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.navify-menu-modal-header {
+  padding: 2px 15px 2px 12px;
+  background-color: #f1f1f1;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navify-menu-modal-body {display: block;}
+
+.navify-menu-modal-body .tab {
+  /* float: left; */
+  /* border: 1px solid #ccc; */
+  /* background-color: #f3f3f3; */
+  /* width: 15%; */
+  height: auto;
+}
+.tab-content-container{
+  width: 85%;
+  float: left;
+  height: 500px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  margin-bottom: 5px;
+}
+/* button icon */
+.navify-menu-modal-body .tab button:after{
+  content: "";
+  position: relative;
+  right: 0;
+  top: 2px;
+  display: inline-block;
+  -webkit-font-smoothing: antialiased;
+  font-family: 'dashicons';
+  font-size: 14px;
+  width: 14px;
+}
+.navify-menu-modal-body .tab button:first-child:after{
+  content: "\f116";
+}
+.navify-menu-modal-body .tab button:nth-child(2):after{
+  content: "\f107";
+}
+.navify-menu-modal-body .tab button:last-child:after{
+  content: "\f161";
+}
+.navify-menu-modal-body .tab button {
+  display: block;
+  background-color: inherit;
+  color: black;
+  padding: 10px 12px;
+  width: 100%;
+  border: none;
+  outline: none;
+  text-align: left;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 12px;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+.navify-menu-modal-body .tab button:hover {
+  background-color: #ddd;
+}
+.navify-menu-modal-body .tab button.active {
+  background-color: #2271b1;
+  color: #fff;
+}
+.navify-menu-modal-body .tabcontent {  
+  padding:15px;
+  border-left: none;
+}
+.navify-grid-container {
+  border: 1px solid #ccc;
+  padding: 7px;
+  margin: 20px 0px 10px;
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.3); 
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.3);
+}
+.navify-grid-container .row-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0px 0px 10px;
+}
+.navify-grid-container .grid-wrap {
+    /* display: flex;     */
+    gap: 5px;
+    clear: both;
+    display: inline-block;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.navify-grid-container .navify-grid {  
+    background-color: #f7f7f7;
+    padding: 8px 4px 8px 4px;
+    text-align: left;
+    min-height:100px;  
+    border: 1px solid #DFDFDF; 
+    float: left;
+    box-sizing: border-box;    
+    margin-inline: 3px;
+}
+
+.new-menu-location-popup {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+}
+
+.new-menu-location-popup-content {
+  background-color: #fff;
+  width: 600px;
+  padding: 20px;
+  margin: 100px auto;
+}
+
+.accordion {
+  width: 100%;
+}
+
+.accordion-item {
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+  background-color: #f7f7f7;
+}
+
+.accordion-header {
+  background-color: #f1f1f1;
+  padding: 10px;
+  cursor: pointer;
+  
+}
+.accordion-header.active{
+  border-bottom: 1px solid #ccc;
+}
+.accordion-header h4{
+  margin: 0px;
+}
+.accordion-content {
+  display: none;
+  padding: 10px;
+}
+.settings-wrapper-accordian {
+  display: flex;
+  flex-direction: column;
+  max-width: 500px;
+}
+#add_new_menu_location input[type="radio"]{
+  -webkit-appearance:auto;
+}
+
+#add_new_menu_location input[type="radio"]:focus{
+  box-shadow: none;
+}
+.navify-menu-settings-form-message {
+  margin-left: 0px !important;
+}
+
+.loation-btn-group {
+  display: flex;
+  gap: 10px;
+}
+
+.loation-btn-group a.button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.delete-location-btn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  border-color: #dc0103 !important;
+  color: #dc0103 !important;
+}
+
+
+.view-location-btn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='1']{ width: calc(8.3333333333% - 6px); }
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='2']{ width: calc(16.6666666667% - 6px); }
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='3']{ width: calc(25% - 6px); }
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='4']{ width: calc(33.3333333333% - 6px); }
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='5']{ width: calc(41.6666666667% - 6px); }
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='6']{ width: calc(50% - 6px); }
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='7']{ width: calc(58.3333333333% - 6px); }
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='8']{ width: calc(66.6666666667% - 6px); }
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='9']{ width: calc(75% - 6px); }
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='10']{ width:calc(83.3333333333% - 6px); }
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='11']{ width: calc(91.6666666667% - 6px); }
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='12']{ width: calc(100% - 6px); }
+
+/* nth child right 0 */
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='8']:nth-of-type(-n+1) ~ .navify-grid[data-span='2']:nth-of-type(2) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='8']:nth-of-type(-n+1) ~ .navify-grid[data-span='3']:nth-of-type(2) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='8']:nth-of-type(-n+1) ~ .navify-grid[data-span='4']:nth-of-type(2) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='9']:nth-of-type(-n+1) ~ .navify-grid[data-span='1']:nth-of-type(2) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='9']:nth-of-type(-n+1) ~ .navify-grid[data-span='2']:nth-of-type(2) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='9']:nth-of-type(-n+1) ~ .navify-grid[data-span='3']:nth-of-type(2) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='10']:nth-of-type(-n+1) ~ .navify-grid[data-span='1']:nth-of-type(2) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='10']:nth-of-type(-n+1) ~ .navify-grid[data-span='2']:nth-of-type(2) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='11']:nth-of-type(-n+1) ~ .navify-grid[data-span='1']:nth-of-type(2) .widget.open .widget-inside,
+
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='6']:nth-of-type(-n+2) ~ .navify-grid[data-span='3']:nth-of-type(3) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='6']:nth-of-type(-n+2) ~ .navify-grid[data-span='4']:nth-of-type(3) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='7']:nth-of-type(-n+2) ~ .navify-grid[data-span='1']:nth-of-type(3) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='7']:nth-of-type(-n+2) ~ .navify-grid[data-span='2']:nth-of-type(3) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='7']:nth-of-type(-n+2) ~ .navify-grid[data-span='3']:nth-of-type(3) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='7']:nth-of-type(-n+2) ~ .navify-grid[data-span='4']:nth-of-type(3) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='8']:nth-of-type(-n+2) ~ .navify-grid[data-span='1']:nth-of-type(3) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='8']:nth-of-type(-n+2) ~ .navify-grid[data-span='2']:nth-of-type(3) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='8']:nth-of-type(-n+2) ~ .navify-grid[data-span='3']:nth-of-type(3) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='9']:nth-of-type(-n+2) ~ .navify-grid[data-span='1']:nth-of-type(3) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='9']:nth-of-type(-n+2) ~ .navify-grid[data-span='2']:nth-of-type(3) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='10']:nth-of-type(-n+2) ~ .navify-grid[data-span='1']:nth-of-type(3) .widget.open .widget-inside,
+
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='4']:nth-of-type(-n+3) ~ .navify-grid[data-span='3']:nth-of-type(4) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='4']:nth-of-type(-n+3) ~ .navify-grid[data-span='4']:nth-of-type(4) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='5']:nth-of-type(-n+3) ~ .navify-grid[data-span='1']:nth-of-type(4) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='5']:nth-of-type(-n+3) ~ .navify-grid[data-span='2']:nth-of-type(4) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='5']:nth-of-type(-n+3) ~ .navify-grid[data-span='3']:nth-of-type(4) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='6']:nth-of-type(-n+3) ~ .navify-grid[data-span='1']:nth-of-type(4) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='6']:nth-of-type(-n+3) ~ .navify-grid[data-span='2']:nth-of-type(4) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='6']:nth-of-type(-n+3) ~ .navify-grid[data-span='3']:nth-of-type(4) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='6']:nth-of-type(-n+3) ~ .navify-grid[data-span='4']:nth-of-type(4) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='7']:nth-of-type(-n+3) ~ .navify-grid[data-span='1']:nth-of-type(4) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='7']:nth-of-type(-n+3) ~ .navify-grid[data-span='2']:nth-of-type(4) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='7']:nth-of-type(-n+3) ~ .navify-grid[data-span='3']:nth-of-type(4) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='8']:nth-of-type(-n+3) ~ .navify-grid[data-span='1']:nth-of-type(4) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='8']:nth-of-type(-n+3) ~ .navify-grid[data-span='2']:nth-of-type(4) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='9']:nth-of-type(-n+3) ~ .navify-grid[data-span='1']:nth-of-type(4) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='9']:nth-of-type(-n+3) ~ .navify-grid[data-span='2']:nth-of-type(4) .widget.open .widget-inside,
+
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='2']:nth-of-type(-n+4) ~ .navify-grid[data-span='3']:nth-of-type(5) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='2']:nth-of-type(-n+4) ~ .navify-grid[data-span='4']:nth-of-type(5) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='3']:nth-of-type(-n+4) ~ .navify-grid[data-span='1']:nth-of-type(5) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='3']:nth-of-type(-n+4) ~ .navify-grid[data-span='2']:nth-of-type(5) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='3']:nth-of-type(-n+4) ~ .navify-grid[data-span='3']:nth-of-type(5) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='3']:nth-of-type(-n+4) ~ .navify-grid[data-span='4']:nth-of-type(5) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='4']:nth-of-type(-n+4) ~ .navify-grid[data-span='1']:nth-of-type(5) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='4']:nth-of-type(-n+4) ~ .navify-grid[data-span='2']:nth-of-type(5) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='5']:nth-of-type(-n+4) ~ .navify-grid[data-span='1']:nth-of-type(5) .widget.open .widget-inside,
+
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='2']:nth-of-type(-n+5) ~ .navify-grid[data-span='1']:nth-of-type(6) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='2']:nth-of-type(-n+5) ~ .navify-grid[data-span='2']:nth-of-type(6) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='2']:nth-of-type(-n+5) ~ .navify-grid[data-span='3']:nth-of-type(6) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='2']:nth-of-type(-n+5) ~ .navify-grid[data-span='4']:nth-of-type(6) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='2']:nth-of-type(-n+5) ~ .navify-grid[data-span='5']:nth-of-type(6) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='2']:nth-of-type(-n+5) ~ .navify-grid[data-span='6']:nth-of-type(6) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='3']:nth-of-type(-n+5) ~ .navify-grid[data-span='1']:nth-of-type(6) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='3']:nth-of-type(-n+5) ~ .navify-grid[data-span='2']:nth-of-type(6) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='3']:nth-of-type(-n+5) ~ .navify-grid[data-span='3']:nth-of-type(6) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='3']:nth-of-type(-n+5) ~ .navify-grid[data-span='4']:nth-of-type(6) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='3']:nth-of-type(-n+5) ~ .navify-grid[data-span='5']:nth-of-type(6) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='4']:nth-of-type(-n+5) ~ .navify-grid[data-span='1']:nth-of-type(6) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='4']:nth-of-type(-n+5) ~ .navify-grid[data-span='2']:nth-of-type(6) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='4']:nth-of-type(-n+5) ~ .navify-grid[data-span='3']:nth-of-type(6) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='4']:nth-of-type(-n+5) ~ .navify-grid[data-span='4']:nth-of-type(6) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='5']:nth-of-type(-n+5) ~ .navify-grid[data-span='1']:nth-of-type(6) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='5']:nth-of-type(-n+5) ~ .navify-grid[data-span='2']:nth-of-type(6) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='5']:nth-of-type(-n+5) ~ .navify-grid[data-span='3']:nth-of-type(6) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='6']:nth-of-type(-n+5) ~ .navify-grid[data-span='1']:nth-of-type(6) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='6']:nth-of-type(-n+5) ~ .navify-grid[data-span='2']:nth-of-type(6) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='7']:nth-of-type(-n+5) ~ .navify-grid[data-span='1']:nth-of-type(6) .widget.open .widget-inside,
+
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='2']:nth-of-type(-n+6) ~ .navify-grid[data-span='1']:nth-of-type(7) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='2']:nth-of-type(-n+6) ~ .navify-grid[data-span='2']:nth-of-type(7) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='2']:nth-of-type(-n+6) ~ .navify-grid[data-span='3']:nth-of-type(7) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='2']:nth-of-type(-n+6) ~ .navify-grid[data-span='4']:nth-of-type(7) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='2']:nth-of-type(-n+6) ~ .navify-grid[data-span='5']:nth-of-type(7) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='2']:nth-of-type(-n+6) ~ .navify-grid[data-span='6']:nth-of-type(7) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='3']:nth-of-type(-n+6) ~ .navify-grid[data-span='1']:nth-of-type(7) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='3']:nth-of-type(-n+6) ~ .navify-grid[data-span='2']:nth-of-type(7) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='3']:nth-of-type(-n+6) ~ .navify-grid[data-span='3']:nth-of-type(7) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='3']:nth-of-type(-n+6) ~ .navify-grid[data-span='4']:nth-of-type(7) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='3']:nth-of-type(-n+6) ~ .navify-grid[data-span='5']:nth-of-type(7) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='4']:nth-of-type(-n+6) ~ .navify-grid[data-span='1']:nth-of-type(7) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='4']:nth-of-type(-n+6) ~ .navify-grid[data-span='2']:nth-of-type(7) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='4']:nth-of-type(-n+6) ~ .navify-grid[data-span='3']:nth-of-type(7) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='4']:nth-of-type(-n+6) ~ .navify-grid[data-span='4']:nth-of-type(7) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='5']:nth-of-type(-n+6) ~ .navify-grid[data-span='1']:nth-of-type(7) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='5']:nth-of-type(-n+6) ~ .navify-grid[data-span='2']:nth-of-type(7) .widget.open .widget-inside,
+
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='1']:nth-of-type(-n+7) ~ .navify-grid[data-span='2']:nth-of-type(8) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='1']:nth-of-type(-n+7) ~ .navify-grid[data-span='3']:nth-of-type(8) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='1']:nth-of-type(-n+7) ~ .navify-grid[data-span='4']:nth-of-type(8) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='1']:nth-of-type(-n+7) ~ .navify-grid[data-span='5']:nth-of-type(8) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='2']:nth-of-type(-n+7) ~ .navify-grid[data-span='1']:nth-of-type(8) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='2']:nth-of-type(-n+7) ~ .navify-grid[data-span='2']:nth-of-type(8) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='2']:nth-of-type(-n+7) ~ .navify-grid[data-span='3']:nth-of-type(8) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='2']:nth-of-type(-n+7) ~ .navify-grid[data-span='4']:nth-of-type(8) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='3']:nth-of-type(-n+7) ~ .navify-grid[data-span='1']:nth-of-type(8) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='3']:nth-of-type(-n+7) ~ .navify-grid[data-span='2']:nth-of-type(8) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='3']:nth-of-type(-n+7) ~ .navify-grid[data-span='3']:nth-of-type(8) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='4']:nth-of-type(-n+7) ~ .navify-grid[data-span='1']:nth-of-type(8) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='4']:nth-of-type(-n+7) ~ .navify-grid[data-span='2']:nth-of-type(8) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='5']:nth-of-type(-n+7) ~ .navify-grid[data-span='1']:nth-of-type(8) .widget.open .widget-inside,
+
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='1']:nth-of-type(-n+8) ~ .navify-grid[data-span='2']:nth-of-type(9) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='1']:nth-of-type(-n+8) ~ .navify-grid[data-span='3']:nth-of-type(9) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='1']:nth-of-type(-n+8) ~ .navify-grid[data-span='4']:nth-of-type(9) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='2']:nth-of-type(-n+8) ~ .navify-grid[data-span='1']:nth-of-type(9) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='2']:nth-of-type(-n+8) ~ .navify-grid[data-span='2']:nth-of-type(9) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='2']:nth-of-type(-n+8) ~ .navify-grid[data-span='3']:nth-of-type(9) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='3']:nth-of-type(-n+8) ~ .navify-grid[data-span='1']:nth-of-type(9) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='3']:nth-of-type(-n+8) ~ .navify-grid[data-span='2']:nth-of-type(9) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='4']:nth-of-type(-n+8) ~ .navify-grid[data-span='1']:nth-of-type(9) .widget.open .widget-inside,
+
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='1']:nth-of-type(-n+9) ~ .navify-grid[data-span='1']:nth-of-type(10) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='1']:nth-of-type(-n+9) ~ .navify-grid[data-span='2']:nth-of-type(10) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='1']:nth-of-type(-n+9) ~ .navify-grid[data-span='3']:nth-of-type(10) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='2']:nth-of-type(-n+9) ~ .navify-grid[data-span='1']:nth-of-type(10) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='2']:nth-of-type(-n+9) ~ .navify-grid[data-span='2']:nth-of-type(10) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='3']:nth-of-type(-n+9) ~ .navify-grid[data-span='1']:nth-of-type(10) .widget.open .widget-inside,
+
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='1']:nth-of-type(-n+10) ~ .navify-grid[data-span='1']:nth-of-type(11) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='1']:nth-of-type(-n+10) ~ .navify-grid[data-span='2']:nth-of-type(11) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='2']:nth-of-type(-n+10) ~ .navify-grid[data-span='1']:nth-of-type(11) .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='1']:nth-of-type(-n+10) ~ .navify-grid[data-span='1']:nth-of-type(11) .widget.open .widget-inside{
+  right: 0;
+}
+.wp-core-ui select{font-size: 12px;background-size: 15px auto;}
+
+.column-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    row-gap: 10px;
+}
+/* .navify-grid-container .row-settings{margin-bottom: 15px;} */
+.column-header .column-counter , .column-header .column-settings{display: flex; align-items: center; gap: 1px;flex-wrap: wrap; }
+.column-header .column-settings{gap: 3px;}
+/* hover */
+.column-header .column-settings span:not(span.dashicons-trash),.row-header .row-settings span:not(span.dashicons-trash){filter: opacity(0.4);transition: 0.3s ease-in-out;}
+.column-header .column-settings span:hover,
+.row-header .row-settings span:hover,
+.row-header .row-settings span.open,
+.column-header .column-settings span.open{filter: opacity(1) !important;}
+.column-header .column-counter{margin-left: auto;}
+.column-header .column-counter span{font-size: 11px;line-height: 12px;}
+.column-header .column-counter span.dashicons-arrow-left-alt2,
+.column-header .column-counter span.dashicons-arrow-right-alt2{width: 8px;}
+.column-header .column-counter span.dashicons-arrow-left-alt2{margin-right: 2px;}
+.navify-grid .setting-wrap{
+  padding-bottom: 20px;
+  top: 20px;
+  position: relative;
+}
+.column-header .column-settings .column-show-desktop.active::before,
+.row-header .row-settings .row-show-desktop.active::before,
+.column-header .column-settings .column-show-smartphone.active::before,
+.row-header .row-settings .row-show-smartphone.active::before{
+  filter: brightness(0) saturate(100%) invert(14%) sepia(87%) saturate(6830%) hue-rotate(350deg) brightness(80%) contrast(124%);
+}
+.column-header .column-settings .column-show-desktop.active,
+.row-header .row-settings .row-show-desktop.active,
+.column-header .column-settings .column-show-smartphone.active,
+.row-header .row-settings .row-show-smartphone.active{filter: opacity(1);}
+/* tooltip css */
+.column-header .column-settings span,
+.row-header .row-settings span{
+  position: relative;
+}
+.column-header .column-settings span .tooltiptext,
+.row-header .row-settings span .tooltiptext{
+    position: absolute;
+    pointer-events: none;
+    background-color: #2c3338;
+    padding: 6px;
+    border-radius: 2px;
+    z-index: 1;
+    filter: opacity(1) !important;
+    color: #fff;
+    top: -29px;
+    left: 0;
+    width: 130px;
+    font-size: 11px;
+    opacity: 0;
+    transition: all 0.3s;
+    transition-delay: 0.3s;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+}
+.column-header .column-settings span:hover .tooltiptext,
+.row-header .row-settings span:hover .tooltiptext{opacity: 1;}
+/* .row-settings{margin-bottom: 10px;} */
+.column-header .column-settings span .tooltiptext:after,
+.row-header .row-settings span .tooltiptext:after{
+    bottom: -8px;
+    left: 8px;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    border-color: transparent;
+    border-top-color: #2c3338;
+    border-width: 4px;
+    margin-left: -4px;
+}
+.navify-grid-container .setting-wrap.row-settings{margin-bottom: 20px;}
+
+.navify-grid-container .setting-wrap input[type=date],
+.navify-grid-container .setting-wrap input[type=datetime-local],
+.navify-grid-container .setting-wrap input[type=datetime],
+.navify-grid-container .setting-wrap input[type=email],
+.navify-grid-container .setting-wrap input[type=month],
+.navify-grid-container .setting-wrap input[type=number],
+.navify-grid-container .setting-wrap input[type=password],
+.navify-grid-container .setting-wrap input[type=search],
+.navify-grid-container .setting-wrap input[type=tel],
+.navify-grid-container .setting-wrap input[type=text],
+.navify-grid-container .setting-wrap input[type=time],
+.navify-grid-container .setting-wrap input[type=url],
+.navify-grid-container .setting-wrap input[type=week]{
+  margin-bottom: 10px;
+}
+/* input */
+input[type=date], input[type=datetime-local], 
+input[type=datetime], input[type=email], 
+input[type=month], input[type=number], 
+input[type=password], input[type=search], 
+input[type=tel], input[type=text], 
+input[type=time], input[type=url], 
+input[type=week]{
+  width: 100%;
+  margin: 0 0 0px 0;
+  border: 1px solid #8c8f94;
+  font-size: 12px;
+}
+input[type=date]::placeholder, input[type=datetime-local]::placeholder, 
+input[type=datetime]::placeholder, input[type=email]::placeholder, 
+input[type=month]::placeholder, input[type=number]::placeholder, 
+input[type=password]::placeholder, input[type=search]::placeholder, 
+input[type=tel]::placeholder, input[type=text]::placeholder, 
+input[type=time]::placeholder, input[type=url]::placeholder, 
+input[type=week]::placeholder{
+  font-size: 12px;
+  color: #8c8f94;
+}
+input[type=checkbox]:focus, input[type=color]:focus, input[type=date]:focus, input[type=datetime-local]:focus, 
+input[type=datetime]:focus, input[type=email]:focus, 
+input[type=month]:focus, input[type=number]:focus, input[type=password]:focus, 
+input[type=radio]:focus, input[type=search]:focus, input[type=tel]:focus, input[type=text]:focus, input[type=time]:focus, 
+input[type=url]:focus, input[type=week]:focus, select:focus, textarea:focus{
+  outline: none;
+  border-color: #2271b1;
+  box-shadow: 0 0 0 0.4px #2271b1;
+}
+.manage-col-width{cursor: pointer;}
+.dashicons-trash{color: #dc0103;} 
+.dashicons{cursor: pointer;}
+.row-error-message.error{
+  background: #fff;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, .04);
+  margin: 5px 15px 2px;
+  padding: 8px 12px;
+  margin: 10px 0px;
+  border: 1px solid #d63638;
+  border-left: 3px solid #d63638;
+}
+.navfify-grid-wrapper .widget-inside {  
+  padding: 10px;
+  width: 300px;
+}
+.navfify-grid-wrapper .column-contant {
+  padding: 10px;
+  text-align: left;
+}
+
+.navfify-grid-wrapper .widget-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.widget-inside.open{display: block;}
+.navfify-grid-wrapper .widget.open .widget-inside {
+  display: block;
+}
+#panel_widgets{
+  float: right;
+}
+.wp-core-ui select:hover {
+    color: #000;
+}
+.row-header span, .column-header span{
+  font-size: 13px;
+  width: auto;
+  height: fit-content;
+}
+
+.navify_content {
+    width: 100%;
+    margin: auto;      
+    border-radius: 5px;
+}
+
+.navify_content h4 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+#navify_menu_settings_form h3{font-size: 14px;}
+.navify_content table {
+    width: 50%;
+}
+
+.navify_content td {
+    padding: 5px;
+    font-size: 12px;
+}
+.naviify-icon-action{text-align: start;margin-bottom: 10px;}
+.naviify-icon-action input,.naviify-icon-action input::placeholder{
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  box-shadow: 0 0 0 transparent;
+  border-radius: 4px;
+  background-color: #fff;
+  color: #2c3338;
+  margin: 0 0 10px 0;
+  font-size: 12px;
+}
+.navify-icon-wrapper {
+  display: flex;
+  justify-content: start;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+/* icon tab */
+ul.navify-icon-tab-wrap{padding-bottom: 10px;margin: 10px 0 20px 0; display: flex;align-items: center;gap: 12px;border-bottom: 1px solid #b9b9b9;}
+ul.navify-icon-tab-wrap li{padding: 4px 8px; list-style: none;margin: 0;background-color: #f3f3f3; border: 1px solid #cccccc;border-radius: 3px; cursor: pointer;transition: 0.3s ease-in-out;}
+ul.navify-icon-tab-wrap li:hover{background-color: #fff;border-color: #2471b1;color: #2471b1;}
+ul.navify-icon-tab-wrap li.active{background-color:#2471b1; border-color: #2471b1; color: #fff;}
+#navify-menu-icons .navify-icon-wrap input[type=text]{width: 50%;}
+/* icon */
+.navify-icon-item { position: relative; gap: 6px; display: flex;flex-shrink: 0; justify-content: center; align-items: center; text-align: center; height: 40px; width: 40px; cursor: pointer; transition: 0.2s; }
+.navify-icon-item span::before{color: #83878c;font-size: 18px;}
+.navify-icon-item span{pointer-events: none;z-index: 1;}
+.navify-icon-item input{ left: 0; position: absolute; height: 100%; width: 100%; border-radius: 0; z-index: 1; border: 1px solid #ccc; top: 0; background: #f3f3f3; margin: 0; cursor: pointer; }
+.navify-icon-item input:hover{border-color: #fff;background-color: #2471b1;}
+.navify-icon-item input:hover ~ span::before{color:#fff;}
+.navify-icon-item input:checked{ background-color: #fff; border-color: #2471b1; }
+.navify-icon-item input:checked ~ span::before{color: #2471b1;}
+input[type=radio]:checked::before{display: none;}
+.custom-icon .navify-icon-item input:checked ~ span{opacity: 0;pointer-events: none;visibility: hidden;}
+/* custom icon */
+/* .navify-custom-icon-wrapper{display: flex; flex-direction: column; gap: 20px; justify-content: center; align-items: center;width: 100%; } */
+.tab_content-result .navify-icon-wrap .navify-icon-list.custom-icon img{object-fit: contain;height: 35px;width: 35px;z-index: 1;pointer-events: none;}
+.tab_content-result .navify-icon-wrap .navify-icon-list.custom-icon .navify-icon-item{height: 60px;width: 60px;}
+.tab_content-result .navify-icon-wrap .navify-icon-list.custom-icon .navify-icon-item input:hover{background-color: #fff;border-color: #000;}
+
+/* .tab-content-container .tab_content-result {height: 75%;} */
+/* .tab-content-container .tab_content-result .tabcontent, */
+.tab-content-container .tab_content-result .navify-icon-wrap,
+/* .tab-content-container .tab_content-result .navify-icon-tab-content, */
+.tab-content-container .tab_content-result .navify-icon-list{height: 100%;width: 100%;}
+.tab_content-result .navify-icon-wrap .navify-icon-list.custom-icon .dashicons-trash:before{content: "\f335";}
+/* delete icon */
+.navify-icon-item .remove-custom-icon{position: absolute; top: 0;right: 0; z-index: 2; pointer-events: auto;opacity: 0;}
+.navify-icon-item:hover .remove-custom-icon::before{color: #dc0103;}
+.navify-icon-item:hover .remove-custom-icon{opacity: 1;}
+
+
+/* loader saving icon */
+.icons-loader{margin-left: auto; margin-right: 40px;}
+.saving-loader{ text-transform: uppercase;color: #2471b1;position: relative;padding-right: 26px;font-size: 15px;line-height: 18px;font-weight: 700;}
+.saving-loader::before{
+    color: #0073aa;
+    display: inline-block;
+    font: normal 14px / 20px "dashicons";
+    /* speak: none; */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    vertical-align: top;
+    margin-right: 5px;
+    content: '\f531';
+    -webkit-animation: rotation 2s infinite linear;
+    animation: rotation 2s infinite linear;
+    position: absolute;
+    right: 0;
+}
+@keyframes rotation {
+    from {
+        transform: rotateY(180deg) rotate(0deg);
+    }
+    to {
+        transform: rotateY(180deg) rotate(-360deg);
+    }
+}
+/* .navify-icon-item .dashicons {font-size: 25px;} */
+
+#navify-menu .meganavify-model-header-container{display: flex; flex-wrap: wrap; justify-content: start; row-gap: 10px;column-gap: 10px;align-items: center;}
+#navify-menu .meganavify-model-header-container #panel_widgets{margin-left: auto;}
+
+
+/* widgest */
+.grid-wrap .column-contant{padding: 0;}
+.grid-wrap .widget:first-child{margin-top: 15px;}
+.grid-wrap .widget h4,.grid-wrap .widget h3{padding: 0;font-weight: 400;color: #3c434a;font-size: 12px;line-height: 16px;}
+.navfify-grid-wrapper .widget-top{padding: 8px 5px;flex-wrap: wrap;background-color: #eeeeee;background-color: #fff; border-color: #ccc;}
+.grid-wrap .widget-top .widget-action{padding: 0;gap: 10px;}
+.grid-wrap .widget-top .widget-action span:before{color: #a0a2a5;transition: 0.3s;}
+.grid-wrap .widget-top .widget-action:hover span:before{color: #000;}
+.grid-wrap .widget-top .widget-action span::before{font-size: 18px;}
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='2'] .widget h3,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='2'] .widget h4{
+  word-wrap: break-word;white-space: unset;
+}
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='1'] .widget h3,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='1'] .widget h4{
+  font-size: 12px;word-break: break-all;white-space: unset;
+}
+.navfify-grid-wrapper .widget.open .widget-top{border-bottom: 0;border-color: #3c434a;background-color: #f0f0f1;}
+/* form widgest */
+.navfify-grid-wrapper .widget.open .widget-inside{position: absolute;top: 98%; z-index: -1; -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04); box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04); margin-top: -1px; background: white; min-width: 340px;width: 100%; box-sizing: border-box; display: block;border-color: #3c434a; }
+/* {margin: 0;} */
+.navfify-grid-wrapper .widget.open .media-widget-control label{margin-bottom: 10px;}
+.media-widget-control .attachment-media-view .button-add-media, .media-widget-control .placeholderP{padding: 6px 0;}
+.navfify-grid-wrapper .widget.open .widget-inner input{margin: 0;}
+.navfify-grid-wrapper .widget.open .media-widget-fields{margin-block: 10px;}
+.media-widget-control .media-widget-buttons .button{color: #000;border-color: #000;}
+.media-widget-control .media-widget-buttons .button:hover{background-color: #2471b1;color: #fff;border-color: #2471b1;}
+.navfify-grid-wrapper .widget-controls a.delete:hover{color:#D0011B !important;}
+.navfify-grid-wrapper .widget.open .widget-content p,
+.navfify-grid-wrapper .widget.open .widget-controls,
+.navfify-grid-wrapper .widget.open .media-widget-control p,
+.navfify-grid-wrapper .widget.open .text-widget-fields p{margin: 0 0 10px 0;}
+
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='2'] .widget.open .widget-inside,
+.navfify-grid-wrapper #navify_grid_result .navify-grid-container .grid-wrap .navify-grid[data-span='1'] .widget.open .widget-inside{min-width: 260px;width: unset;}
+
+
+
+@media only screen and (max-width: 960px) {
+    .navify-menu-modal .navify-menu-modal-content{left: calc(50% + 18px);width: 80%;}
+}
+@media only screen and (max-width: 782px) {
+    /*  */
+    .navify-model-tab-container{flex-direction: column;row-gap: 20px;}
+    .tab-container{width: 100%;}
+    .tab-content-container{width: 100%;height: 430px;}
+    /* tab */
+    .navify-menu-modal-body .tab{display: flex;gap: 10px;}
+    /*  */
+    .navify-menu-modal .navify-menu-modal-content{left: 50%;width: 90%;top: calc(50% + 23px);}
+    .wp-admin .form-table select, .wp-core-ui select{min-height: 33px;}
+    /* .tab-container{width: 20%;} */
+    .navify-menu-modal-body .tab button{padding: 10px 8px;flex-wrap: wrap;}
+    .navify-menu-modal-body .tabcontent{padding: 15px 8px;} 
+}
+
+@media only screen and (max-height: 590px) {
+  .navify-menu-modal{height: 600px;}
+  .tab-content-container{height: 400px;}
+}
+
+@media only screen and (max-height: 590px) and (max-width: 782px) {
+  .navify-menu-modal{height: 600px;}
+  .tab-content-container{height: 350px;}
+}
+
+@media only screen and (max-height: 540px) {
+  .navify-menu-modal{height: 545px;}
+}
+@media only screen and (max-height: 540px) and (max-width: 782px) {
+  .navify-model-tab-container{row-gap: 20px;}
+  .navify-menu-modal{height: 542px;} 
+}
+
+@media only screen and (max-height: 510px) {
+  .navify-menu-modal{height: 515px;}
+  .tab-content-container { height: 390px; }
+}
+@media only screen and (max-height: 510px) and (max-width: 782px) {
+  .navify-menu-modal{height: 512px;}
+  .tab-content-container { height: 330px; }
+}
+
+@media only screen and (max-height: 480px) {
+  .navify-menu-modal{height: 485px;}
+}
+@media only screen and (max-height: 480px) and (max-width: 782px) {
+  .navify-menu-modal{height: 482px;}
+  .tab-content-container { height: 340px; }
+}
+
+@media only screen and (max-height: 468px) {
+  .navify-menu-modal{height: 470px;}
+  .navify-menu-modal .navify-menu-modal-content{min-height: 320px;}
+  .tab-content-container { height: 320px; }
+}
+@media only screen and (max-height: 468px) and (max-width: 782px) {
+  .navify-menu-modal{height: 470px;}
+  .tab-content-container { height: 270px; }
+}
+
+@media only screen and (max-height: 426px) {
+  .navify-menu-modal{height: 430px;}
+  .navify-menu-modal .navify-menu-modal-content{top: 46%;}
+  .tab-content-container { height: 270px; }
+}
+@media only screen and (max-height: 426px) and (max-width: 782px) {
+  .navify-menu-modal{height: 460px;}
+  .tab-content-container { height: 220px; }
+}
+
+@media only screen and (max-height: 366px) {
+  .navify-menu-modal{height: 370px;}
+  .navify-menu-modal .navify-menu-modal-content{top: 32%;min-height: 200px;}
+  .tab-content-container { height: 150px; }
+}
+@media only screen and (max-height: 366px) and (max-width: 782px) {
+  .navify-model-tab-container { row-gap: 0; }
+  .navify-menu-modal{height: 640px;}
+  .tab-content-container { height: 170px; }
+}
+@media only screen and (max-height: 340px) and (max-width: 782px) {
+   .navify-menu-modal{height: 510px;}
+  .tab-content-container { height: 100px; }
+}

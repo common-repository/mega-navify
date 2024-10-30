@@ -1,0 +1,22 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "create-block/meganavify-menu",
+  "version": "0.1.0",
+  "title": "Meganavify",
+  "category": "text",
+  "icon": "menu",
+  "description": " A block to display meganavify menu",
+  "attributes": {
+    "locations": {
+      "type": "string"
+    }
+  },
+  "supports": {
+    "html": false
+  },
+  "textdomain": "mega-navify",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css"
+}
